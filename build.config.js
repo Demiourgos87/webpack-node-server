@@ -1,10 +1,12 @@
 var ExtractTextPlugin = require("extract-text-webpack-plugin"),
+    HtmlWebpackPlugin = require('html-webpack-plugin'),
+    CleanWebpackPlugin = require('clean-webpack-plugin'),
     path = require('path');
 
 // ----- Output file paths
 var outputDir = 'dist/',
-    cssOutput = 'css/main.css',
-    jsOutput = 'js/main.bundle.js';
+    cssOutput = 'css/main.[chunkhash:8].css',
+    jsOutput = 'js/main.[chunkhash:8].bundle.js';
 
 module.exports = {
     entry: './src/js/app.js',
@@ -27,5 +29,13 @@ module.exports = {
             }
         ]
     },
-    plugins: [ new ExtractTextPlugin(cssOutput) ]
+    plugins: [
+        new CleanWebpackPlugin(['dist/js', 'dist/css']),
+        new ExtractTextPlugin(cssOutput),
+        new HtmlWebpackPlugin({
+            title: 'Diwanee',
+            filename: 'index.html',
+            template: './src/templates/index.html'
+        })
+    ]
 };
