@@ -35,7 +35,7 @@ module.exports = {
         new HtmlWebpackPlugin({
             title: 'Diwanee',
             filename: 'index.html',
-            template: './src/templates/index.html'
+            template: './src/index.html'
         })
     ]
 };
